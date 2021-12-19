@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Tester.Testers
 {
-    public class AbstractFactoryTester : ITester
+    public class AbstractFactoryTester : Tester, ITester
     {
+        protected override string GetName() => this.GetType().Name;
+
         public void Run()
         {
+            this.IntroduceTester();
 
             ISmartPhonePack applePack = new IPhone13ProPack();
             var applePrice = applePack.GetPrice();

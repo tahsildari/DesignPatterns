@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Tester.Testers
 {
-    class BuilderTester : ITester
+    class BuilderTester : Tester, ITester
     {
+        protected override string GetName() => this.GetType().Name;
         public void Run()
         {
+            this.IntroduceTester();
+
             List<Pizza> pizzas = new List<Pizza>();
 
             Restaurant dominos = new Restaurant();

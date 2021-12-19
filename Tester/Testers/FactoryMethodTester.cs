@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Tester.Testers
 {
-    public class FactoryMethodTester : ITester
+    public class FactoryMethodTester : Tester, ITester
     {
-        public void Run() {
+        protected override string GetName() => this.GetType().Name;
+        public void Run()
+        {
+            this.IntroduceTester();
+
             var logisicsCompanies = new List<ITransportFactory>();
             logisicsCompanies.Add(new LandTransport());
             logisicsCompanies.Add(new AirTransport());
