@@ -1,25 +1,20 @@
 ﻿using DesignPatternsAsISeeThem.Creational.Factory;
 using System;
 using System.Collections.Generic;
+using Tester.Testers;
 
 namespace Tester
 {
     class Program
     {
+        public static List<ITester> testers = new List<ITester>();
         static void Main(string[] args)
         {
-            var logisicsCompanies = new List<ITransportFactory>();
-            logisicsCompanies.Add(new LandTransport());
-            logisicsCompanies.Add(new AirTransport());
-            logisicsCompanies.Add(new SeaTransport());
-            logisicsCompanies.Add(new AirLandTransport());
-            logisicsCompanies.Add(new AirLandTransport { QuickestPreffered = true });
+            testers.Add(new FactoryMethodTester());
+            testers.Add(new AbstractFactoryTester());
+            testers.Add(new BuilderTester());
 
-            logisicsCompanies.ForEach(logistic =>
-            {
-                var transport = logistic.CreateTransport();
-                Console.WriteLine(transport.Deliver());
-            });
+            testers.ForEach(t => t.Run());
 
             Console.ReadLine();
         }
