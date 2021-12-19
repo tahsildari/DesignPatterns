@@ -14,6 +14,7 @@ namespace Tester
             testers.Add(new AbstractFactoryTester());
             testers.Add(new BuilderTester());
             testers.Add(new PrototypeTester());
+            testers.Add(new SingletonTester());
 
             testers.ForEach(t => t.Run());
 
