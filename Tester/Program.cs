@@ -17,6 +17,7 @@ namespace Tester
             testers.Add(new SingletonTester());
             testers.Add(new AdapterTester());
             testers.Add(new DecoratorTester());
+            testers.Add(new FacadeTester());
 
             testers.ForEach(t => t.Run());
 
