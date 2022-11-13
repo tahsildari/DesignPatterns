@@ -10,6 +10,7 @@ namespace Tester
         public static List<ITester> testers = new List<ITester>();
         static void Main(string[] args)
         {
+            //todo: automate adding testers with reflection using the ITester interface
             testers.Add(new FactoryMethodTester());
             testers.Add(new AbstractFactoryTester());
             testers.Add(new BuilderTester());
