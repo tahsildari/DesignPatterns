@@ -12,7 +12,7 @@ namespace Tester.Testers
         protected override string GetName() => this.GetType().Name;
         public void Run()
         {
-            this.IntroduceTester();
+            IntroduceTester();
 
             Menu foodCourtMenu = new Menu();
             Food riceAndChicken = new Food

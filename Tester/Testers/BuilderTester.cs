@@ -12,7 +12,7 @@ namespace Tester.Testers
         protected override string GetName() => this.GetType().Name;
         public void Run()
         {
-            this.IntroduceTester();
+            IntroduceTester();
 
             List<Pizza> pizzas = new List<Pizza>();
 

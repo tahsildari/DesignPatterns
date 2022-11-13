@@ -12,7 +12,7 @@ namespace Tester.Testers
         protected override string GetName() => this.GetType().Name;
         public void Run()
         {
-            this.IntroduceTester();
+            IntroduceTester();
 
             IPriceService rawPriceService = new PriceService();
             IPriceService formattedPriceService = new PriceSeparatorDecorator(new PriceService());

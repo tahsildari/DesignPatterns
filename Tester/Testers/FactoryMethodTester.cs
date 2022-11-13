@@ -12,7 +12,7 @@ namespace Tester.Testers
         protected override string GetName() => this.GetType().Name;
         public void Run()
         {
-            this.IntroduceTester();
+            IntroduceTester();
 
             var logisicsCompanies = new List<ITransportFactory>();
             logisicsCompanies.Add(new LandTransport());

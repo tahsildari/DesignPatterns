@@ -10,8 +10,9 @@ namespace Tester
     {
         protected abstract string GetName();
         protected void IntroduceTester()
-        { 
-            Console.WriteLine(GetName() + " " + new string('-', 20));
+        {
+            var spacer = new string('_', 30);
+            Console.WriteLine($"\n{spacer} {GetName()} {spacer}");
         }
     }
 }

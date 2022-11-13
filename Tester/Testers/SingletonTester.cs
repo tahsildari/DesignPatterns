@@ -20,7 +20,7 @@ namespace Tester.Testers
         protected override string GetName() => this.GetType().Name;
         public void Run()
         {
-            Console.WriteLine(this.GetType().Name + " " + new string('-', 20));
+            IntroduceTester();
 
             Thread t1 = new Thread(() => {
                 var logger = SingletonLogger.GetLogger();

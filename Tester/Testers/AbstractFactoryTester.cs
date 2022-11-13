@@ -14,7 +14,7 @@ namespace Tester.Testers
 
         public void Run()
         {
-            this.IntroduceTester();
+            IntroduceTester();
 
             ISmartPhonePack applePack = new IPhone13ProPack();
             var applePrice = applePack.GetPrice();
