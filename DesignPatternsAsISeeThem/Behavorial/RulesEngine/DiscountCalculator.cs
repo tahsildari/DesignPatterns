@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
 {
-    public class DiscountCalculator
+    public class DiscountCalculator : IDiscountCalculator
     {
         readonly DateOnly TeachersDay = new DateOnly(2000, 10, 5); //Oct 5th
 
