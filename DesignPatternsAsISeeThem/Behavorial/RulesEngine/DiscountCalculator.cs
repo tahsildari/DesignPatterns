@@ -1,6 +1,8 @@
 ﻿using DesignPatternsAsISeeThem.Behavorial.RulesEngine.Context;
+using DesignPatternsAsISeeThem.Behavorial.RulesEngine.RuleEngine.RuleEngine;
 using DesignPatternsAsISeeThem.Behavorial.RulesEngine.Rules;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 
 namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
@@ -24,14 +26,14 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
         // On teacher's day, teachers get 7% extra discount
         public decimal Calculate(Customer customer)
         {
-            var percent = 0m;
+            var rules = new List<IDiscountCalculator>();
+         
+            rules.Add(new FirstTimeCustomerRule());
+            rules.Add(new LoyalCustomerRule());
+            rules.Add(new TeacherCustomerRule(TeachersDay));
+            rules.Add(new BirthdayRule());
 
-            percent = Math.Max(new FirstTimeCustomerRule().Calculate(customer, percent), percent);
-            percent = Math.Max(new LoyalCustomerRule().Calculate(customer, percent), percent);
-            percent = Math.Max(new TeacherCustomerRule(TeachersDay).Calculate(customer, percent), percent);
-            percent = Math.Max(new BirthdayRule().Calculate(customer, percent), percent);
-
-            return percent;
+            return new DiscountRuleEngine(rules).CaculateDiscountPercentage(customer);
         }
     }
 }
