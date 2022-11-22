@@ -6,8 +6,14 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
 {
     public class DiscountCalculator
     {
+        readonly DateOnly TeachersDay = new DateOnly(2000, 10, 5); //Oct 5th
+
         public DiscountCalculator()
         {
+        }
+        public DiscountCalculator(DateOnly worldsTeachersDay)
+        {
+            TeachersDay = worldsTeachersDay;
         }
 
         // Rules:
@@ -44,8 +50,12 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-1))
                     percent = .01m;
 
+                bool isItTeachersDay =
+                    TeachersDay.Day == DateTime.Today.Day &&
+                    TeachersDay.Month == DateTime.Today.Month;
+
                 if (customer.IsTeacher)
-                    percent += .02m;
+                    percent += (isItTeachersDay ? .07m : .02m);
             }
 
             if (customer.Birthdate.Month == DateTime.Now.Month

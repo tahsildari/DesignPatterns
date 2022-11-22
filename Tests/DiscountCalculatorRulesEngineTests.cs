@@ -132,5 +132,38 @@ namespace Tests
 
             percent.Should().Be(expectedPercent / 100);
         }
+
+        [Fact]
+        public void ReturnMembershipYearsPlusSevenOnTeachersDay()
+        {
+            Customer customer = new Customer
+            {
+                DateOfFirstPurchase = DateTime.Today.AddYears(-4),
+                IsTeacher = true
+            };
+
+            var fictionalTeachersDay = DateOnly.FromDateTime(DateTime.Today);
+            var sut = new DiscountCalculator(fictionalTeachersDay);
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(.11m);
+        }
+
+        [Fact]
+        public void ReturnMembershipYearsPlusSeventeenOnTeachersDayAndBirthday()
+        {
+            Customer customer = new Customer
+            {
+                Birthdate = DateTime.Today.AddYears(-40),
+                DateOfFirstPurchase = DateTime.Today.AddYears(-4),
+                IsTeacher = true
+            };
+
+            var fictionalTeachersDay = DateOnly.FromDateTime(DateTime.Today);
+            var sut = new DiscountCalculator(fictionalTeachersDay);
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(.21m);
+        }
     }
 }
