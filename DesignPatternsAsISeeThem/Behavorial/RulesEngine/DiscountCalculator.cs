@@ -20,7 +20,29 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
             if (customer.DateOfFirstPurchase == null)
                 return .15m;
             else
-                return 0;
+            {
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-10))
+                    return 10;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-9))
+                    return 9;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-8))
+                    return 8;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-7))
+                    return 7;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-6))
+                    return 6;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-5))
+                    return 5;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-4))
+                    return 4;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-3))
+                    return 3;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-2))
+                    return 2;
+                if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-1))
+                    return 1;
+                return 0m;
+            }
         }
     }
 }
