@@ -12,7 +12,7 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
 
         // Rules:
         // First purchase has 15% discount for everyone
-        // Each year has 1% discount up to a 10% maximum, for teachers 2-12%
+        // Each year has 1% discount up to a 10% maximum, for teachers 2% more
         // Purchases on birthday have 10% extra discount
         // On teacher's day, teachers get 7% extra discount
         public decimal Calculate(Customer customer)
