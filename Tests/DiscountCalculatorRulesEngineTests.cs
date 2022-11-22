@@ -40,17 +40,17 @@ namespace Tests
         }
 
         [Theory]
-        [InlineData(1,1)]
-        [InlineData(2,2)]
-        [InlineData(3,3)]
-        [InlineData(4,4)]
-        [InlineData(5,5)]
-        [InlineData(6,6)]
-        [InlineData(7,7)]
-        [InlineData(8,8)]
-        [InlineData(9,9)]
-        [InlineData(10,10)]
-        [InlineData(15,10)]
+        [InlineData(1, .01)]
+        [InlineData(2, .02)]
+        [InlineData(3, .03)]
+        [InlineData(4, .04)]
+        [InlineData(5, .05)]
+        [InlineData(6, .06)]
+        [InlineData(7, .07)]
+        [InlineData(8, .08)]
+        [InlineData(9, .09)]
+        [InlineData(10, .10)]
+        [InlineData(15, .10)]
         public void ReturnPercentEqualToYearsOfMembershipForNonTeachersForForMaxOf10(int year, decimal expectedPercent)
         {
             Customer customer = new Customer
@@ -62,21 +62,21 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent / 100);
+            percent.Should().Be(expectedPercent);
         }
 
         [Theory]
-        [InlineData(1, 3)]
-        [InlineData(2, 4)]
-        [InlineData(3, 5)]
-        [InlineData(4, 6)]
-        [InlineData(5, 7)]
-        [InlineData(6, 8)]
-        [InlineData(7, 9)]
-        [InlineData(8, 10)]
-        [InlineData(9, 11)]
-        [InlineData(10, 12)]
-        [InlineData(15, 12)]
+        [InlineData(1, .03)]
+        [InlineData(2, .04)]
+        [InlineData(3, .05)]
+        [InlineData(4, .06)]
+        [InlineData(5, .07)]
+        [InlineData(6, .08)]
+        [InlineData(7, .09)]
+        [InlineData(8, .10)]
+        [InlineData(9, .11)]
+        [InlineData(10, .12)]
+        [InlineData(15, .12)]
         public void ReturnPercentEqualToYearsOfMembershipPlusTwoForTeachersForMaxOf12(int year, decimal expectedPercent)
         {
             Customer customer = new Customer
@@ -88,14 +88,14 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent / 100);
+            percent.Should().Be(expectedPercent);
         }
 
         [Theory]
-        [InlineData(1,11)]
-        [InlineData(5,15)]
-        [InlineData(10,20)]
-        [InlineData(15,20)]
+        [InlineData(1, .11)]
+        [InlineData(5, .15)]
+        [InlineData(10, .20)]
+        [InlineData(15, .20)]
         public void ReturnMembershipYearsPlusTenPercentForNonTeacherOnBirthday(int year, decimal expectedPercent)
         {
             var today = DateTime.Today;
@@ -109,14 +109,14 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent / 100);
+            percent.Should().Be(expectedPercent);
         }
 
         [Theory]
-        [InlineData(1, 13)]
-        [InlineData(5, 17)]
-        [InlineData(10, 22)]
-        [InlineData(15, 22)]
+        [InlineData(1, .13)]
+        [InlineData(5, .17)]
+        [InlineData(10, .22)]
+        [InlineData(15, .22)]
         public void ReturnMembershipYearsPlusTwoPlusTenPercentForTeacherOnBirthday(int year, decimal expectedPercent)
         {
             var today = DateTime.Today;
@@ -130,7 +130,7 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent / 100);
+            percent.Should().Be(expectedPercent);
         }
 
         [Fact]
