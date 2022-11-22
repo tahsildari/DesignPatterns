@@ -4,6 +4,6 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
 {
     public interface IDiscountCalculator
     {
-        decimal Calculate(Customer customer);
+        decimal Calculate(Customer customer, decimal percent);
     }
 }

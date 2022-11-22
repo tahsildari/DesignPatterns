@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
 {
-    public class DiscountCalculator : IDiscountCalculator
+    public class DiscountCalculator
     {
         readonly DateOnly TeachersDay = new DateOnly(2000, 10, 5); //Oct 5th
 
@@ -16,14 +16,14 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
             TeachersDay = worldsTeachersDay;
         }
 
-        public decimal CalculateDiscountForFirstTimeCustomer(Customer customer)
+        public decimal CalculateDiscountForFirstTimeCustomer(Customer customer, decimal percent)
         {
             if (customer.DateOfFirstPurchase == null)
                 return .15m;
             return 0m;
         }
 
-        public decimal CalculateDiscountForLoyalCustomers(Customer customer)
+        public decimal CalculateDiscountForLoyalCustomers(Customer customer, decimal percent)
         {
             if (customer.DateOfFirstPurchase.HasValue)
             {
@@ -82,8 +82,8 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
         {
             var percent = 0m;
 
-            percent = Math.Max(CalculateDiscountForFirstTimeCustomer(customer), percent);
-            percent = Math.Max(CalculateDiscountForLoyalCustomers(customer), percent);
+            percent = Math.Max(CalculateDiscountForFirstTimeCustomer(customer, percent), percent);
+            percent = Math.Max(CalculateDiscountForLoyalCustomers(customer, percent), percent);
             percent = Math.Max(CalculateDiscountForTeacherCustomers(customer, percent), percent);
             percent = Math.Max(CalculateDiscountForCustomersBirthday(customer, percent), percent);
 
