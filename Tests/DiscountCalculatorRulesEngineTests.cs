@@ -43,7 +43,7 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent);
+            percent.Should().Be(expectedPercent / 100);
         }
 
         [Theory]
@@ -69,7 +69,7 @@ namespace Tests
             var sut = new DiscountCalculator();
             var percent = sut.Calculate(customer);
 
-            percent.Should().Be(expectedPercent);
+            percent.Should().Be(expectedPercent / 100);
         }
     }
 }

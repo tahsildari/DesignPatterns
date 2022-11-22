@@ -23,28 +23,28 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
             else
             {
                 if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-10))
-                    percent = 10;
+                    percent = .10m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-9))
-                    percent = 9;
+                    percent = .09m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-8))
-                    percent = 8;
+                    percent = .08m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-7))
-                    percent = 7;
+                    percent = .07m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-6))
-                    percent = 6;
+                    percent = .06m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-5))
-                    percent = 5;
+                    percent = .05m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-4))
-                    percent = 4;
+                    percent = .04m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-3))
-                    percent = 3;
+                    percent = .03m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-2))
-                    percent = 2;
+                    percent = .02m;
                 else if (customer.DateOfFirstPurchase.Value < DateTime.Now.AddYears(-1))
-                    percent = 1;
+                    percent = .01m;
 
                 if (customer.IsTeacher)
-                    percent += 2;
+                    percent += .02m;
             }
             return percent;
         }
