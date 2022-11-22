@@ -21,6 +21,25 @@ namespace Tests
         }
 
         [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void Return25PercentForFirstBuyOnBirthdayRegardlessOfJob(bool isTeacher)
+        {
+            var today = DateTime.Today;
+            Customer customer = new Customer
+            {
+                Birthdate = new DateTime(2000, today.Month, today.Day),
+                DateOfFirstPurchase = default(DateTime?),
+                IsTeacher = isTeacher
+            };
+
+            var sut = new DiscountCalculator();
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(.25m);
+        }
+
+        [Theory]
         [InlineData(1,1)]
         [InlineData(2,2)]
         [InlineData(3,3)]
@@ -62,6 +81,48 @@ namespace Tests
         {
             Customer customer = new Customer
             {
+                DateOfFirstPurchase = DateTime.Now.AddYears(-1 * year),
+                IsTeacher = true
+            };
+
+            var sut = new DiscountCalculator();
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(expectedPercent / 100);
+        }
+
+        [Theory]
+        [InlineData(1,11)]
+        [InlineData(5,15)]
+        [InlineData(10,20)]
+        [InlineData(15,20)]
+        public void ReturnMembershipYearsPlusTenPercentForNonTeacherOnBirthday(int year, decimal expectedPercent)
+        {
+            var today = DateTime.Today;
+            Customer customer = new Customer
+            {
+                Birthdate = new DateTime(2000, today.Month, today.Day),
+                DateOfFirstPurchase = DateTime.Now.AddYears(-1 * year),
+                IsTeacher = false
+            };
+
+            var sut = new DiscountCalculator();
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(expectedPercent / 100);
+        }
+
+        [Theory]
+        [InlineData(1, 13)]
+        [InlineData(5, 17)]
+        [InlineData(10, 22)]
+        [InlineData(15, 22)]
+        public void ReturnMembershipYearsPlusTwoPlusTenPercentForTeacherOnBirthday(int year, decimal expectedPercent)
+        {
+            var today = DateTime.Today;
+            Customer customer = new Customer
+            {
+                Birthdate = new DateTime(2000, today.Month, today.Day),
                 DateOfFirstPurchase = DateTime.Now.AddYears(-1 * year),
                 IsTeacher = true
             };

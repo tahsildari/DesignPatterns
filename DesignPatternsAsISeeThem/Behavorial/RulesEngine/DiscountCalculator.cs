@@ -18,6 +18,7 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
         public decimal Calculate(Customer customer)
         {
             var percent = 0m;
+
             if (customer.DateOfFirstPurchase == null)
                 percent = .15m;
             else
@@ -46,6 +47,11 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine
                 if (customer.IsTeacher)
                     percent += .02m;
             }
+
+            if (customer.Birthdate.Month == DateTime.Now.Month
+                && customer.Birthdate.Day == DateTime.Now.Day)
+                percent += .10m;
+
             return percent;
         }
     }
