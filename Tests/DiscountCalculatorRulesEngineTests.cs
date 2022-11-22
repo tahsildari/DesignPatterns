@@ -63,7 +63,7 @@ namespace Tests
             Customer customer = new Customer
             {
                 DateOfFirstPurchase = DateTime.Now.AddYears(-1 * year),
-                IsTeacher = false
+                IsTeacher = true
             };
 
             var sut = new DiscountCalculator();
