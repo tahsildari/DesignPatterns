@@ -165,5 +165,42 @@ namespace Tests
 
             percent.Should().Be(.21m);
         }
+
+
+        [Fact]
+        public void ReturnOnlyCouponPercentageWhenNotTheirBirthday()
+        {
+            Customer customer = new Customer
+            {
+                Birthdate = DateTime.Today.AddYears(-40).AddDays(-5),
+                IsTeacher = true,
+                DateOfFirstPurchase = DateTime.Today.AddDays(-30),
+                Coupon = "BLACK-FRIDAY-25"
+            };
+
+            var fictionalTeachersDay = DateOnly.FromDateTime(DateTime.Today);
+            var sut = new DiscountCalculator(fictionalTeachersDay);
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(.25m);
+        }
+
+        [Fact]
+        public void ReturnBothCouponAndBirthdayPercentageOnTheirBirthday()
+        {
+            Customer customer = new Customer
+            {
+                Birthdate = DateTime.Today.AddYears(-40),
+                IsTeacher = true,
+                DateOfFirstPurchase = DateTime.Today.AddDays(-30),
+                Coupon = "BLACK-FRIDAY-25"
+            };
+
+            var fictionalTeachersDay = DateOnly.FromDateTime(DateTime.Today);
+            var sut = new DiscountCalculator(fictionalTeachersDay);
+            var percent = sut.Calculate(customer);
+
+            percent.Should().Be(.35m);
+        }
     }
 }

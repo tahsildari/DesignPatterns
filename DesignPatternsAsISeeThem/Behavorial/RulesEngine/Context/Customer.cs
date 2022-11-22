@@ -11,5 +11,6 @@ namespace DesignPatternsAsISeeThem.Behavorial.RulesEngine.Context
         public DateTime Birthdate { get; set; }
         public DateTime? DateOfFirstPurchase { get; set; }
         public bool IsTeacher { get; set; }
+        public string Coupon { get; set; }
     }
 }
